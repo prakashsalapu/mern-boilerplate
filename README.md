@@ -16,7 +16,7 @@ This boilerplate helps you skip repetitive setup and start building real feature
 ---
 
 ### 📁 Project Structure
-
+```
 mern-boilerplate/
 │
 ├── client/ # React frontend (UI)
@@ -45,7 +45,7 @@ mern-boilerplate/
 │
 ├── .gitignore
 └── README.md
-
+```
 ---
 
 ### ⚙️ Local Setup
