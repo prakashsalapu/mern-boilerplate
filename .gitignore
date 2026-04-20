@@ -5,6 +5,7 @@ server/node_modules/
 
 # Environment variables (very important!)
 .env
+.env.*
 client/.env
 server/.env
 
