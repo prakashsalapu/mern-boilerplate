@@ -162,6 +162,8 @@ Feel free to fork this repo and improve it. PRs are welcome.
 
 MIT License
 
+---
+
 ### ⭐ Star This Repo!
 If this boilerplate saves you time (and I bet it will), give it a star! It helps others find it and motivates me to keep improving it.
 
