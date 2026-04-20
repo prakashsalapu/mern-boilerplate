@@ -66,7 +66,7 @@ A production-ready full-stack template with:
 
 ### Step 1: Clone and Install
 
-```bash
+```
 # Clone this repo to your computer
 git clone https://github.com/your-username/mern-boilerplate.git my-awesome-project
 
@@ -80,7 +80,11 @@ npm install
 # Install frontend dependencies
 cd ../client
 npm install
+
+```
+
 Step 2: Set Up Your Database
+```
 Head over to MongoDB Atlas (it's free!)
 
 Create a new cluster (the free tier is plenty for starting out)
@@ -93,7 +97,9 @@ text
 mongodb+srv://<username>:<password>@cluster0.xxxxx.mongodb.net/<dbname>?retryWrites=true&w=majority
 Replace <username>, <password>, and <dbname> with your actual values
 
+```
 Step 3: Configure Environment Variables
+```
 For the backend (create server/.env):
 
 env
@@ -119,7 +125,7 @@ npm run dev
 You should see: Local: http://localhost:5173/
 
 Open your browser to http://localhost:5173 and you're off to the races! 🎉
-
+```
 🚢 Deployment - Taking Your App Live
 Frontend → Vercel (Takes 2 minutes, seriously)
 Push your code to GitHub
