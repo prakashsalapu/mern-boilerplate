@@ -51,8 +51,7 @@ mern-boilerplate/
 ---
 
 ### ⚙️ Local Setup
-
-#### 1. Clone the repo
+1. Clone the repo
 
 ```
 git clone https://github.com/prakashsalapu/mern-boilerplate.git
@@ -74,6 +73,7 @@ npm run dev
 ```
 
 3. Setup Frontend
+```
 cd client
 npm install
 npm run dev
