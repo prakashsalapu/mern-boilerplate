@@ -9,22 +9,25 @@ dotenv.config();
 const app = express();
 
 // ===============================
-// CORS CONFIG (IMPORTANT)
+// CORS CONFIG (FIXED)
 // ===============================
 const allowedOrigins = [
-  "http://localhost:5173", // local frontend
-  "https://mern-boilerplate-by-prakash.vercel.app/", // 🔴 replace with your Vercel URL
+  "http://localhost:5173",
+  process.env.CLIENT_URL, // ✅ from .env
 ];
 
 app.use(
   cors({
     origin: function (origin, callback) {
-      // allow requests with no origin (like Postman)
-      if (!origin) return callback(null, true);
+      if (!origin) return callback(null, true); // Postman
 
-      if (allowedOrigins.includes(origin)) {
+      // remove trailing slash just in case
+      const normalizedOrigin = origin.replace(/\/$/, "");
+
+      if (allowedOrigins.includes(normalizedOrigin)) {
         return callback(null, true);
       } else {
+        console.log("Blocked by CORS:", origin);
         return callback(new Error("Not allowed by CORS"));
       }
     },
@@ -48,7 +51,7 @@ app.get("/", (req, res) => {
 });
 
 // ===============================
-// Error Handling (must be last)
+// Error Handling
 // ===============================
 const errorHandler = require("./middleware/error.middleware");
 app.use(errorHandler);
