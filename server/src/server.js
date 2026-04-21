@@ -9,26 +9,25 @@ dotenv.config();
 const app = express();
 
 // ===============================
-// CORS CONFIG (FIXED)
+// CORS CONFIG (FIXED + CLEAN)
 // ===============================
 const allowedOrigins = [
   "http://localhost:5173",
-  process.env.CLIENT_URL, // ✅ from .env
-];
+  process.env.CLIENT_URL, // from .env
+].filter(Boolean); // removes undefined
 
 app.use(
   cors({
     origin: function (origin, callback) {
-      if (!origin) return callback(null, true); // Postman
+      if (!origin) return callback(null, true); // Postman / mobile apps
 
-      // remove trailing slash just in case
       const normalizedOrigin = origin.replace(/\/$/, "");
 
       if (allowedOrigins.includes(normalizedOrigin)) {
-        return callback(null, true);
+        callback(null, true);
       } else {
-        console.log("Blocked by CORS:", origin);
-        return callback(new Error("Not allowed by CORS"));
+        console.log("❌ CORS Blocked:", origin);
+        callback(new Error("Not allowed by CORS"));
       }
     },
     credentials: true,
@@ -45,9 +44,14 @@ app.use(express.json());
 // ===============================
 app.use("/api/users", require("./routes/user.routes"));
 
-// health check
+// ✅ NEW: API test route
+app.get("/api/message", (req, res) => {
+  res.json("API running 🚀");
+});
+
+// health check (for browser)
 app.get("/", (req, res) => {
-  res.send("API running 🚀");
+  res.send("Server is running 🚀");
 });
 
 // ===============================
@@ -63,9 +67,9 @@ const PORT = process.env.PORT || 5000;
 
 const startServer = async () => {
   await connectDB();
-  app.listen(PORT, () =>
-    console.log(`🚀 Server running on port ${PORT}`)
-  );
+  app.listen(PORT, () => {
+    console.log(`🚀 Server running on port ${PORT}`);
+  });
 };
 
 startServer();
